@@ -1,9 +1,14 @@
-## Dependancies to track.
-DEPS = uart.h
 ## Binaries directory.
 BIN = bin
 ## Build path.
 BUILD = build
+
+## Dependancies to track.
+DEPS = uart.h
+## C sources and Assembly sources
+CSOURCES = main.c uart.c
+ASOURCES =
+
 ## Executable file name.
 EXECUTABLE = main
 
@@ -11,6 +16,13 @@ EXECUTABLE = main
 CC = avr-gcc
 ## C++ compiler.
 CXX = avr-g++
+
+# Programs and commands.
+OBJCOPY = avr-objcopy
+OBJDUMP = avr-objdump
+SIZE = avr-size
+NM = avr-nm
+AVRDUDE = avrdude
 
 # -> AVR variables.
 ## MCU name.
@@ -55,29 +67,201 @@ CFLAGS = $(DBG) $(CDEFS) $(CINCS) $(OPT) \
 		-Wall -Wstrict-prototypes \
 		-Wa,-adhlns=$(patsubst %,$(BUILD)/%,$(<:.c=.lst)) \
 		$(CSTANDARD)
+## Assembly-flags
+AFLAGS = -Wa,-adhlns=$(<:.S=.lst),-gstabs
 
-CSOURCES = main.c uart.c
-ASOURCES =
+## Compiler flags to generate dependency files.
+GENDEPFLAGS = -MD -MP -MF build/$(@F).d
+
+# Combine all necessary flags and optional flags.
+# Add target processor to flags.
+ALL_CFLAGS = -mmcu=$(MCU) -I. $(CFLAGS) $(GENDEPFLAGS)
+ALL_ASFLAGS = -mmcu=$(MCU) -I. -x assembler-with-cpp $(AFLAGS)
+
+## Define all Object & Listing files
 _OBJECTS = $(CSOURCES:.c=.o) $(ASOURCES:.S=.o)
 OBJECTS = $(patsubst %,$(BUILD)/%,$(_OBJECTS))
 _LISTS = $(CSOURCES:.c=.lst) $(ASOURCES:.S=.lst)
 LISTS = $(patsubst %,$(BUILD)/%,$(_LISTS))
 
+# ---------------------- Libraries ----------------------
+
+## > Minimalistic printf version
+PRINTF_LIB_MIN = -Wl,-u,vfprintf -lprintf_min
+## > Floating point printf version (requires MATH_LIB = -lm below)
+PRINTF_LIB_FLOAT = -Wl,-u,vfprintf -lprintf_flt
+### = If this is left blank, then it will use the Standard printf version.
+PRINTF_LIB =
+# PRINTF_LIB = $(PRINTF_LIB_MIN)
+# PRINTF_LIB = $(PRINTF_LIB_FLOAT)
+
+## > Minimalistic scanf version
+SCANF_LIB_MIN = -Wl,-u,vfscanf -lscanf_min
+
+## > Floating point + %[ scanf version (requires MATH_LIB = -lm below)
+SCANF_LIB_FLOAT = -Wl,-u,vfscanf -lscanf_flt
+
+### = If this is left blank, then it will use the Standard scanf version.
+SCANF_LIB =
+#SCANF_LIB = $(SCANF_LIB_MIN)
+#SCANF_LIB = $(SCANF_LIB_FLOAT)
+
+MATH_LIB = -lm
+
+# ------------------------------------------------------- #
+#					###		###		###					  #
+# ------------------- External Memory ------------------- #
+
+# 64 KB of external RAM, starting after internal RAM (ATmega128!),
+# used for variables (.data/.bss) and heap (malloc()).
+#EXTMEMOPTS = -Wl,-Tdata=0x801100,--defsym=__heap_end=0x80ffff
+
+# 64 KB of external RAM, starting after internal RAM (ATmega128!),
+# only used for heap (malloc()).
+#EXTMEMOPTS = -Wl,--defsym=__heap_start=0x801100,--defsym=__heap_end=0x80ffff
+
+EXTMEMOPTS =
+
+# ------------------------------------------------------- #
+#					###		###		###					  #
+# ----------------------- Linker ------------------------ #
+
+#  -Wl,...:     tell GCC to pass this to linker.
+#    -Map:      create map file
+#    --cref:    add cross reference to  map file
+LDFLAGS = -Wl,-Map=$(BUILD)/$(EXECUTABLE).map,--cref
+LDFLAGS += $(EXTMEMOPTS)
+LDFLAGS += $(PRINTF_LIB) $(SCANF_LIB) $(MATH_LIB)
+
+# ------------------------------------------------------- #
+#					###		###		###					  #
+# ------------------- Utils variables ------------------- #
+# Display size of file.
+ELFFILE = ${BIN}/${EXECUTABLE}.elf
+HEXFILE = ${BIN}/${EXECUTABLE}.hex
+
+HEXSIZE = $(SIZE) --target=$(FORMAT) $(HEXFILE)
+ELFSIZE = $(SIZE) -A $(ELFFILE)
+AVRMEM = avr-mem.sh $(ELFFILE) $(MCU)
+# ------------------------------------------------------- #
+
+
 info:
 	@echo $(OBJECTS)
 	@echo $(LISTS)
 
-all: build
+all: init \
+	prebuild \
+	build \
+	postbuild
 
-init:
-	mkdir build bin
+init: \
+	gccversion
+	@echo ""
+	@echo " ## Initializing..."
+	@if [ ! -d "bin" ]; then \
+		echo " > mkdir bin"; mkdir bin; \
+	else echo " > bin folder exists."; \
+	fi
+	@if [ ! -d "build" ]; then \
+		echo " > mkdir build"; mkdir build; \
+	else echo " > build folder exists."; \
+	fi
+	@sleep 1
+	@echo ""
 
-build: $(OBJECTS)
-	$(CC) -o ${BIN}/${EXECUTABLE} $(OBJECTS) $(CFLAGS)
+gccversion:
+	@echo ""
+	@$(CC) --version
 
+prebuild: \
+	sizebefore
+	@echo " ## Building Objects..."
+
+build: \
+	build-elf \
+	build-hex \
+	build-eep \
+	build-lss \
+	build-sym
+
+postbuild: \
+	sizeafter
+	@echo " ## Done building objects..."
+
+#$(OBJECTS)
+#	$(CC) -o ${BIN}/${EXECUTABLE} $(OBJECTS) $(CFLAGS)
+
+build-elf: ${BIN}/${EXECUTABLE}.elf
+build-hex: ${BIN}/${EXECUTABLE}.hex
+build-eep: ${BIN}/${EXECUTABLE}.eep
+build-lss: ${BIN}/${EXECUTABLE}.lss
+build-sym: ${BIN}/${EXECUTABLE}.sym
+
+## C
+.SECONDARY : ${BUILD}/${EXECUTABLE}.elf
+.PRECIOUS : $(OBJECTS)
 $(BUILD)/%.o: %.c $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CC) -c $(ALL_CFLAGS) $< -o $@
+#	$(CC) -c -o $@ $< $(CFLAGS)
 
+$(BIN)/%.elf: $(OBJECTS)
+	@echo
+	@echo " ## Linking .o files into " $@
+	$(CC) $(ALL_CFLAGS) $^ --output $@ $(LDFLAGS)
+
+$(BIN)/%.hex: $(BIN)/%.elf
+	@echo
+	@echo "Creating .hex from ELF file" $@
+	$(OBJCOPY) -O $(FORMAT) -R .eeprom $< $@
+
+$(BIN)/%.eep: $(BIN)/%.elf
+	@echo
+	@echo "Creating .eep from ELF file" $@
+	-$(OBJCOPY) -j .eeprom --set-section-flags=.eeprom="alloc,load" \
+	--change-section-lma .eeprom=0 -O $(FORMAT) $< $@
+
+$(BIN)/%.lss: $(BIN)/%.elf
+	@echo
+	@echo "Create extended listing file (.lss) from ELF output file." $@
+	$(OBJDUMP) -h -S $< > $@
+
+$(BIN)/%.sym: $(BIN)/%.elf
+	@echo
+	@echo "Create a symbol (.sym) table from ELF file" $@
+	$(NM) -n $< > $@
+
+## Assembler
+# Compile: create assembler files from C source files.
+%.s : %.c
+	$(CC) -S $(ALL_CFLAGS) $< -o $@
+
+# Assemble: create object files from assembler source files.
+%.o : %.S
+	@echo
+	@echo $(MSG_ASSEMBLING) $<
+	$(CC) -c $(ALL_ASFLAGS) $< -o $@
+
+# Create preprocessed source for use in sending a bug report.
+%.i : %.c
+	$(CC) -E -mmcu=$(MCU) -I. $(CFLAGS) $< -o $@
+
+# --------------------- Fun utils: --------------------- #
+
+sizebefore:
+	@echo $(ELFFILE);
+	@if test -f $(ELFFILE); then \
+		echo; echo "Size before: "; $(ELFSIZE); \
+		$(AVRMEM) 2>/dev/null; echo; \
+	fi
+
+sizeafter:
+	@if test -f $(ELFFILE); then \
+		echo; echo "Size after: "; $(ELFSIZE); \
+		$(AVRMEM) 2>/dev/null; echo; \
+	fi
+
+# ------------------------------------------------------- #
 
 .PHONY: clean
 
