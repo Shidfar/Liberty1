@@ -1,3 +1,18 @@
+# ------------------ High Level Config ------------------ #
+
+## Executable file name.
+EXECUTABLE = main
+## Microcontroller Model
+MCU_NAME = atmega328p
+## AVR Dude programmer
+PROGRAMMER_NAME = arduino
+## Port
+PORT_PATH = /dev/tty.usb*
+
+# ------------------------------------------------------- #
+#					###		###		###					  #
+# ------------------------ Config ----------------------- #
+
 ## Binaries directory.
 BIN = bin
 ## Build path.
@@ -8,9 +23,6 @@ DEPS = uart.h
 ## C sources and Assembly sources
 CSOURCES = main.c uart.c
 ASOURCES =
-
-## Executable file name.
-EXECUTABLE = main
 
 ## C compiler.
 CC = avr-gcc
@@ -26,7 +38,7 @@ AVRDUDE = avrdude
 
 # -> AVR variables.
 ## MCU name.
-MCU = atmega328p
+MCU = ${MCU_NAME}
 
 ## Processor frequency.
 F_CPU = 16000000
@@ -84,7 +96,9 @@ OBJECTS = $(patsubst %,$(BUILD)/%,$(_OBJECTS))
 _LISTS = $(CSOURCES:.c=.lst) $(ASOURCES:.S=.lst)
 LISTS = $(patsubst %,$(BUILD)/%,$(_LISTS))
 
-# ---------------------- Libraries ----------------------
+# ------------------------------------------------------- #
+#					###		###		###					  #
+# ---------------------- Libraries ---------------------- #
 
 ## > Minimalistic printf version
 PRINTF_LIB_MIN = -Wl,-u,vfprintf -lprintf_min
@@ -144,7 +158,46 @@ HEXSIZE = $(SIZE) --target=$(FORMAT) $(HEXFILE)
 ELFSIZE = $(SIZE) -A $(ELFFILE)
 AVRMEM = avr-mem.sh $(ELFFILE) $(MCU)
 # ------------------------------------------------------- #
+#            ###             ###           ###            #
+# ------------ Programming Options (avrdude) ------------ #
 
+# Programming hardware: alf avr910 avrisp bascom bsd
+# dt006 pavr picoweb pony-stk200 sp12 stk200 stk500
+#
+# Type: avrdude -c ?
+# to get a full listing.
+#
+AVRDUDE_PROGRAMMER = ${PROGRAMMER_NAME}
+
+# com1 = serial port. Use lpt1 to connect to parallel port.
+# programmer connected to serial device
+AVRDUDE_PORT = ${PORT_PATH}
+
+AVRDUDE_WRITE_FLASH = -U flash:w:${BIN}/${EXECUTABLE}.hex
+#AVRDUDE_WRITE_EEPROM = -U eeprom:w:${BIN}/${EXECUTABLE}.eep
+
+
+# Uncomment the following if you want avrdude's erase cycle counter.
+# Note that this counter needs to be initialized first using -Yn,
+# see avrdude manual.
+#AVRDUDE_ERASE_COUNTER = -y
+
+# Uncomment the following if you do /not/ wish a verification to be
+# performed after programming the device.
+#AVRDUDE_NO_VERIFY = -V
+
+# Increase verbosity level.  Please use this when submitting bug
+# reports about avrdude. See <http://savannah.nongnu.org/projects/avrdude>
+# to submit bug reports.
+#AVRDUDE_VERBOSE = -v -v
+
+AVRDUDE_FLAGS = -p $(MCU) \
+				-P $(AVRDUDE_PORT) \
+				-c $(AVRDUDE_PROGRAMMER) \
+				-b 115200 #57600 \
+				$(AVRDUDE_NO_VERIFY) $(AVRDUDE_VERBOSE) $(AVRDUDE_ERASE_COUNTER)
+
+# ------------------------------------------------------- #
 
 info:
 	@echo $(OBJECTS)
@@ -198,6 +251,45 @@ build-eep: ${BIN}/${EXECUTABLE}.eep
 build-lss: ${BIN}/${EXECUTABLE}.lss
 build-sym: ${BIN}/${EXECUTABLE}.sym
 
+# --------------------- Fun utils: --------------------- #
+
+sizebefore:
+	@echo $(ELFFILE);
+	@if test -f $(ELFFILE); then \
+		echo; echo "Size before: "; $(ELFSIZE); \
+		$(AVRMEM) 2>/dev/null; echo; \
+	fi
+
+sizeafter:
+	@if test -f $(ELFFILE); then \
+		echo; echo "Size after: "; $(ELFSIZE); \
+		$(AVRMEM) 2>/dev/null; echo; \
+	fi
+
+# ------------------------------------------------------- #
+#            ###             ###           ###            #
+# ------------------------ Upload ----------------------- #
+
+HEXFILE = ${BIN}/${EXECUTABLE}.hex
+EEPFILE = ${BIN}/${EXECUTABLE}.eep
+
+upload: $(HEXFILE) $(EEPFILE)
+	$(AVRDUDE) $(AVRDUDE_FLAGS) $(AVRDUDE_WRITE_FLASH) $(AVRDUDE_WRITE_EEPROM)
+
+# ------------------------------------------------------- #
+#            ###             ###           ###            #
+# ----------------------- CleanUp ----------------------- #
+
+.PHONY: clean
+
+clean:
+	rm -rf ${BIN}
+	rm -rf ${BUILD}
+
+# ------------------------------------------------------- #
+#            ###             ###           ###            #
+# ------------------- Transformations ------------------- #
+
 ## C
 .SECONDARY : ${BUILD}/${EXECUTABLE}.elf
 .PRECIOUS : $(OBJECTS)
@@ -246,28 +338,6 @@ $(BIN)/%.sym: $(BIN)/%.elf
 %.i : %.c
 	$(CC) -E -mmcu=$(MCU) -I. $(CFLAGS) $< -o $@
 
-# --------------------- Fun utils: --------------------- #
-
-sizebefore:
-	@echo $(ELFFILE);
-	@if test -f $(ELFFILE); then \
-		echo; echo "Size before: "; $(ELFSIZE); \
-		$(AVRMEM) 2>/dev/null; echo; \
-	fi
-
-sizeafter:
-	@if test -f $(ELFFILE); then \
-		echo; echo "Size after: "; $(ELFSIZE); \
-		$(AVRMEM) 2>/dev/null; echo; \
-	fi
-
-# ------------------------------------------------------- #
-
-.PHONY: clean
-
-clean:
-	rm -rf ${BIN}
-	rm -rf ${BUILD}
 
 ## $< is the first item in the dependencies list
 ## special macros '$@' and '$^' are the left and right sides of the ':'
