@@ -2,8 +2,19 @@
 // Created by Shidfar Hodizoda on 14/04/2018.
 //
 
-#include "uart.h"
-void initialize_uart() {
+#ifndef __AVR_ATmega328P__
+#define __AVR_ATmega328P__
+#endif
+
+#include <avr/io.h>
+#include <stdio.h>
+
+#define F_CPU 16000000UL
+#define BAUD  9600// 115200
+
+#include <util/setbaud.h>
+
+void initialize_uart(void) {
     UBRR0H = UBRRH_VALUE;
     UBRR0L = UBRRL_VALUE;
 #if USE_2X
@@ -17,8 +28,11 @@ void initialize_uart() {
 }
 
 int uart_putchar(char c, FILE *stream) {
-    loop_until_bit_is_set(UCSR0A, UDRE0); /* Wait until data register empty. */
-    UDR0 = (uint8_t)c;
+    if (c == '\n') {
+        uart_putchar('\r', stream);
+    }
+    loop_until_bit_is_set(UCSR0A, UDRE0);
+    UDR0 = c;
     return 0;
 }
 

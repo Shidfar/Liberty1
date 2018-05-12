@@ -9,5 +9,6 @@ set(CMAKE_C_COMPILER avr-gcc)
 include_directories(/usr/local/avr/avr/include)
 include_directories(include)
 include_directories(spike)
-add_executable(Liberty1 src/main.cpp include/pinout.h src/liberty/Engine.cpp src/liberty/Engine.h src/common/uart.c src/common/uart.h
+add_executable(Liberty1 src/main.cpp include/pinout.h src/liberty/Engine.cpp src/liberty/Engine.h
+        include/uart/main.c include/uart/uart.c
         spike/uart/main.c spike/uart/uart.c)

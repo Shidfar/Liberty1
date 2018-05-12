@@ -5,9 +5,11 @@
 #ifndef LIBERTY1_ENGINE_H
 #define LIBERTY1_ENGINE_H
 
+#ifdef __cplusplus
 extern "C" {
-#include "../common/uart.h"
+#include "uart/uart.h"
 }
+#endif
 
 namespace liberty1 {
     class Engine {
