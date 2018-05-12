@@ -8,8 +8,8 @@
 int main(void) {
 
     initialize_uart();
-    stdout = &uart_output;
-    stdin  = &uart_input;
+    stdout = &uart_out;
+    stdin  = &uart_in;
 
     char input[100];
 
