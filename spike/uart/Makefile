@@ -7,7 +7,7 @@ MCU_NAME = atmega328p
 ## AVR Dude programmer
 PROGRAMMER_NAME = arduino
 ## Port
-PORT_PATH = /dev/tty.usb*
+PORT_PATH = /dev/ttyACM0
 
 # ------------------------------------------------------- #
 #					###		###		###					  #
