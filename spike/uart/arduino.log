@@ -1,0 +1,223 @@
+/home/shidfar/judge-13/shed/arduino-1.8.9-linux64/arduino-1.8.9/arduino-builder -dump-prefs -logger=machine \
+    -hardware /home/shidfar/judge-13/shed/arduino-1.8.9-linux64/arduino-1.8.9/hardware \
+    -hardware /home/shidfar/.arduino15/packages \
+    -tools /home/shidfar/judge-13/shed/arduino-1.8.9-linux64/arduino-1.8.9/tools-builder \
+    -tools /home/shidfar/judge-13/shed/arduino-1.8.9-linux64/arduino-1.8.9/hardware/tools/avr \
+    -tools /home/shidfar/.arduino15/packages \
+    -built-in-libraries /home/shidfar/judge-13/shed/arduino-1.8.9-linux64/arduino-1.8.9/libraries \
+    -libraries /home/shidfar/Arduino/libraries -fqbn=arduino:avr:uno -vid-pid=0X2A03_0X0043 -ide-version=10809 \
+    -build-path /tmp/arduino_build_366492 -warnings=none \
+    -build-cache /tmp/arduino_cache_350822 \
+    -prefs=build.warn_data_percentage=75 \
+    -prefs=runtime.tools.avrdude.path=/home/shidfar/.arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17 \
+    -prefs=runtime.tools.avrdude-6.3.0-arduino17.path=/home/shidfar/.arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17 \
+    -prefs=runtime.tools.arduinoOTA.path=/home/shidfar/.arduino15/packages/arduino/tools/arduinoOTA/1.3.0 \
+    -prefs=runtime.tools.arduinoOTA-1.3.0.path=/home/shidfar/.arduino15/packages/arduino/tools/arduinoOTA/1.3.0 \
+    -prefs=runtime.tools.avr-gcc.path=/home/shidfar/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5 \
+    -prefs=runtime.tools.avr-gcc-7.3.0-atmel3.6.1-arduino5.path=/home/shidfar/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5 \
+    -verbose /home/shidfar/judge-13/shed/arduino-1.8.9-linux64/arduino-1.8.9/examples/01.Basics/Blink/Blink.ino
+
+/home/shidfar/judge-13/shed/arduino-1.8.9-linux64/arduino-1.8.9/arduino-builder -compile -logger=machine \
+    -hardware /home/shidfar/judge-13/shed/arduino-1.8.9-linux64/arduino-1.8.9/hardware \
+    -hardware /home/shidfar/.arduino15/packages \
+    -tools /home/shidfar/judge-13/shed/arduino-1.8.9-linux64/arduino-1.8.9/tools-builder \
+    -tools /home/shidfar/judge-13/shed/arduino-1.8.9-linux64/arduino-1.8.9/hardware/tools/avr \
+    -tools /home/shidfar/.arduino15/packages \
+    -built-in-libraries /home/shidfar/judge-13/shed/arduino-1.8.9-linux64/arduino-1.8.9/libraries \
+    -libraries /home/shidfar/Arduino/libraries -fqbn=arduino:avr:uno -vid-pid=0X2A03_0X0043 -ide-version=10809 \
+    -build-path /tmp/arduino_build_366492 -warnings=none -build-cache /tmp/arduino_cache_350822 \
+    -prefs=build.warn_data_percentage=75 \
+    -prefs=runtime.tools.avrdude.path=/home/shidfar/.arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17 \
+    -prefs=runtime.tools.avrdude-6.3.0-arduino17.path=/home/shidfar/.arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17 \
+    -prefs=runtime.tools.arduinoOTA.path=/home/shidfar/.arduino15/packages/arduino/tools/arduinoOTA/1.3.0 \
+    -prefs=runtime.tools.arduinoOTA-1.3.0.path=/home/shidfar/.arduino15/packages/arduino/tools/arduinoOTA/1.3.0 \
+    -prefs=runtime.tools.avr-gcc.path=/home/shidfar/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5 \
+    -prefs=runtime.tools.avr-gcc-7.3.0-atmel3.6.1-arduino5.path=/home/shidfar/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5 \
+    -verbose /home/shidfar/judge-13/shed/arduino-1.8.9-linux64/arduino-1.8.9/examples/01.Basics/Blink/Blink.ino
+
+#  Using board 'uno' from platform in folder: /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2
+#  Using core 'arduino' from platform in folder: /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2
+
+#  Detecting libraries used...
+avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -flto -w -x c++ -E \
+    -CC -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /tmp/arduino_build_366492/sketch/Blink.ino.cpp \
+    -o /dev/null
+
+#  Generating function prototypes...
+avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -flto -w -x c++ -E \
+    -CC -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /tmp/arduino_build_366492/sketch/Blink.ino.cpp \
+    -o /tmp/arduino_build_366492/preproc/ctags_target_for_gcc_minus_e.cpp
+/home/shidfar/judge-13/shed/arduino-1.8.9-linux64/arduino-1.8.9/tools-builder/ctags/5.8-arduino11/ctags -u --language-force=c++ \
+    -f - --c++-kinds=svpf --fields=KSTtzns \
+    --line-directives /tmp/arduino_build_366492/preproc/ctags_target_for_gcc_minus_e.cpp
+
+#  Compiling sketch...
+avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics \
+    -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /tmp/arduino_build_366492/sketch/Blink.ino.cpp \
+    -o /tmp/arduino_build_366492/sketch/Blink.ino.cpp.o
+
+#  Compiling libraries...
+#  Compiling core...
+avr-gcc -c -g -x assembler-with-cpp -flto -MMD -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard \
+    /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/wiring_pulse.S -o /tmp/arduino_build_366492/core/wiring_pulse.S.o
+
+avr-gcc -c -g -Os -w -std=gnu11 -ffunction-sections -fdata-sections -MMD -flto -fno-fat-lto-objects -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard \
+    /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/WInterrupts.c \
+    -o /tmp/arduino_build_366492/core/WInterrupts.c.o
+avr-gcc -c -g -Os -w -std=gnu11 -ffunction-sections -fdata-sections -MMD -flto -fno-fat-lto-objects -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/wiring_analog.c \
+    -o /tmp/arduino_build_366492/core/wiring_analog.c.o
+avr-gcc -c -g -Os -w -std=gnu11 -ffunction-sections -fdata-sections -MMD -flto -fno-fat-lto-objects -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/wiring.c \
+    -o /tmp/arduino_build_366492/core/wiring.c.o
+
+avr-gcc -c -g -Os -w -std=gnu11 -ffunction-sections -fdata-sections -MMD -flto -fno-fat-lto-objects -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/wiring_pulse.c \
+    -o /tmp/arduino_build_366492/core/wiring_pulse.c.o
+avr-gcc -c -g -Os -w -std=gnu11 -ffunction-sections -fdata-sections -MMD -flto -fno-fat-lto-objects -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/wiring_digital.c \
+    -o /tmp/arduino_build_366492/core/wiring_digital.c.o
+avr-gcc -c -g -Os -w -std=gnu11 -ffunction-sections -fdata-sections -MMD -flto -fno-fat-lto-objects -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/hooks.c \
+    -o /tmp/arduino_build_366492/core/hooks.c.o
+avr-gcc -c -g -Os -w -std=gnu11 -ffunction-sections -fdata-sections -MMD -flto -fno-fat-lto-objects -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/wiring_shift.c \
+    -o /tmp/arduino_build_366492/core/wiring_shift.c.o
+avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD \
+    -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/USBCore.cpp \
+    -o /tmp/arduino_build_366492/core/USBCore.cpp.o
+avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD \
+    -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/HardwareSerial0.cpp \
+    -o /tmp/arduino_build_366492/core/HardwareSerial0.cpp.o
+avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD \
+    -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/HardwareSerial2.cpp \
+    -o /tmp/arduino_build_366492/core/HardwareSerial2.cpp.o
+avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD \
+    -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/HardwareSerial.cpp \
+    -o /tmp/arduino_build_366492/core/HardwareSerial.cpp.o
+avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD \
+    -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/HardwareSerial3.cpp \
+    -o /tmp/arduino_build_366492/core/HardwareSerial3.cpp.o
+avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD \
+    -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/CDC.cpp \
+    -o /tmp/arduino_build_366492/core/CDC.cpp.o
+avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD \
+    -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/WString.cpp \
+    -o /tmp/arduino_build_366492/core/WString.cpp.o
+avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD \
+    -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/PluggableUSB.cpp \
+    -o /tmp/arduino_build_366492/core/PluggableUSB.cpp.o
+avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD \
+    -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/Stream.cpp \
+    -o /tmp/arduino_build_366492/core/Stream.cpp.o
+avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD \
+    -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/Tone.cpp \
+    -o /tmp/arduino_build_366492/core/Tone.cpp.o
+avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD \
+    -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/abi.cpp \
+    -o /tmp/arduino_build_366492/core/abi.cpp.o
+avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD \
+    -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/HardwareSerial1.cpp \
+    -o /tmp/arduino_build_366492/core/HardwareSerial1.cpp.o
+avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD \
+    -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/main.cpp \
+    -o /tmp/arduino_build_366492/core/main.cpp.o
+avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD \
+    -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/new.cpp \
+    -o /tmp/arduino_build_366492/core/new.cpp.o
+avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD \
+    -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/Print.cpp \
+    -o /tmp/arduino_build_366492/core/Print.cpp.o
+avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD \
+    -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/WMath.cpp \
+    -o /tmp/arduino_build_366492/core/WMath.cpp.o
+avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD \
+    -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10809 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino \
+    -I/home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/shidfar/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/IPAddress.cpp \
+    -o /tmp/arduino_build_366492/core/IPAddress.cpp.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/CDC.cpp.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/HardwareSerial.cpp.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/HardwareSerial0.cpp.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/HardwareSerial1.cpp.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/HardwareSerial2.cpp.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/HardwareSerial3.cpp.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/IPAddress.cpp.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/PluggableUSB.cpp.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/Print.cpp.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/Stream.cpp.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/Tone.cpp.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/USBCore.cpp.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/WInterrupts.c.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/WMath.cpp.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/WString.cpp.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/abi.cpp.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/hooks.c.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/main.cpp.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/new.cpp.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/wiring.c.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/wiring_analog.c.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/wiring_digital.c.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/wiring_pulse.S.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/wiring_pulse.c.o
+avr-gcc-ar rcs /tmp/arduino_build_366492/core/core.a /tmp/arduino_build_366492/core/wiring_shift.c.o
+
+# Archiving built core (caching) in: /tmp/arduino_cache_350822/core/core_arduino_avr_uno_d149fce41ae95d7c0de2e6c508546909.a
+# Linking everything together...
+avr-gcc -w -Os -g -flto -fuse-linker-plugin -Wl,--gc-sections -mmcu=atmega328p \
+    -o /tmp/arduino_build_366492/Blink.ino.elf /tmp/arduino_build_366492/sketch/Blink.ino.cpp.o /tmp/arduino_build_366492/core/core.a -L/tmp/arduino_build_366492 -lm
+avr-objcopy -O ihex -j .eeprom --set-section-flags=.eeprom=alloc,load --no-change-warnings \
+    --change-section-lma .eeprom=0 /tmp/arduino_build_366492/Blink.ino.elf /tmp/arduino_build_366492/Blink.ino.eep
+avr-objcopy -O ihex -R .eeprom /tmp/arduino_build_366492/Blink.ino.elf /tmp/arduino_build_366492/Blink.ino.hex
+avr-size -A /tmp/arduino_build_366492/Blink.ino.elf
+
+# Sketch uses 924 bytes (2%) of program storage space. Maximum is 32256 bytes.
+# Global variables use 9 bytes (0%) of dynamic memory, leaving 2039 bytes for local variables. Maximum is 2048 bytes.
